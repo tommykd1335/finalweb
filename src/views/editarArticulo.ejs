@@ -1,0 +1,51 @@
+<%- include('layout/header') %>
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg p-4">
+                    <h2 class="text-center text-primary mb-4">Editar Formulario</h2>
+                    <form action="/update/<%= articulo._id %>"  method="post" enctype="multipart/form-data">
+
+                        <div class="mb-3">
+                            <label for="codigo" class="form-label">Código</label>
+                            <input type="text" class="form-control" value="<%= articulo.codigo %>" name="codigo" placeholder="Ingresa el código" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre del Artículo</label>
+                            <input type="text" class="form-control" value="<%= articulo.nombre %>" name="nombre" placeholder="Ingresa el nombre del artículo" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="foto" class="form-label">Foto del Artículo</label>
+                            <input type="file" class="form-control" value="<%= articulo.foto %>" name="foto" required>
+                            <img src="/upload/<%= articulo.foto %>" width="100" class="img-thumbnail">
+                        </div>
+
+                        <input type="hidden" name="old_image" value="<%= articulo.foto %>">
+
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" name="descripcion" rows="4" placeholder="Descripción del artículo" required><%= articulo.descripcion %></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="cantidad" class="form-label">Cantidad Disponible</label>
+                            <input type="number" class="form-control" value="<%= articulo.cantidad %>" name="cantidad" placeholder="Cantidad en almacén" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="precio" class="form-label">Precio</label>
+                            <input type="number" class="form-control" value="<%= articulo.precio %>" name="precio" placeholder="Precio del artículo" step="0.01" required>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg" value="añadir">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('layout/fooder') %>
+    

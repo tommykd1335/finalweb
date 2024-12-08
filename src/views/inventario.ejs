@@ -1,0 +1,57 @@
+<%- include('layout/header') %>
+    <div class="container my-5">
+        <h2 class="text-center text-primary mb-4">Lista de Artículos</h2>
+        <% if(message) {%>
+            <div class="alert alert-dismissible fade show alert-<%= message.type %>" role="alert">
+               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+               <strong>
+                    <%= message.message %>
+               </strong>
+            </div>
+        <% }  %>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>id</th>
+                        <th>Código</th>
+                        <th>Nombre del Artículo</th>
+                        <th>Foto</th>
+                        <th>Descripción</th>
+                        <th>Cantidad Disponible</th>
+                        <th>Precio</th>
+                        <th>Acciones</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (articulos && articulos.length > 0) { %>
+                        <% articulos.forEach((articulo,index) => { %>
+                            <tr>
+                                <td><%= ++index %></td>
+                                <td><%= articulo.codigo %></td>
+                                <td><%= articulo.nombre %></td>
+                                <td>
+                                    <img src="/upload/<%= articulo.foto %>"  
+                                        class="img-thumbnail" 
+                                        style="max-width: 50px; height: auto;">
+                                </td>
+                                <td><%= articulo.descripcion %></td>
+                                <td><%= articulo.cantidad %></td>
+                                <td><%= articulo.precio %></td>
+                                <td>
+                                    <a href="/edit/<%= articulo._id %>"><button class="btn btn-warning btn-sm me-2">Editar</button></a>
+                                    <a href="/delete/<%= articulo._id %>"><button class="btn btn-danger btn-sm">Eliminar</button></a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="7" class="text-center">No hay artículos disponibles</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<%- include('layout/fooder') %>
